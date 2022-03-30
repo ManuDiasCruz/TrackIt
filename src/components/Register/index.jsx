@@ -20,7 +20,7 @@ export default function Register(){
     const navigate = useNavigate();
     
     function register(){
-        console.log('Vamos cadastrar?!');
+        alert('Vamos cadastrar?!');
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up';
         const promise = axios.post(URL, {
             email,
@@ -34,10 +34,10 @@ export default function Register(){
             navigate('/');
         });
         promise.catch(error => alert(error.response));
-
     }
 
     function disableForm(){
+        console.log(name, password, email, photo);
         setColor('#F2F2F2');
         setFontColor('AFAFAF');
         setBtColor('#52B6FF');
@@ -55,6 +55,7 @@ export default function Register(){
                 onChange={(event)=>setEmail(event.target.value)}
                 value={email}
                 required/>
+                {console.log(email)}
             <Input 
                 color={color}
                 fontColor={fontColor}

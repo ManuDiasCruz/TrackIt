@@ -18,8 +18,9 @@ export default function Login({getUserToken}){
     const navigate = useNavigate();
 
     function login(){
-        console.log('Vamos logar?!');
+        alert('Vamos logar?!');
         const loginURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login';
+        
         const promise = axios.post(loginURL, {
             email,
             password
@@ -29,13 +30,17 @@ export default function Login({getUserToken}){
             getUserToken(data.token);
             console.log(data);
             navigate('/HomePage');
+            alert('Loguei!');
         });
+
         promise.catch(error => {
-            alert(error.response.statusText);
+            alert(error.response);
+            alert('Não Loguei!');
         });
     }
 
     function disableForm(){
+        alert(email, password);
         setColor('#F2F2F2');
         setFontColor('AFAFAF');
         setBtColor('#52B6FF');
@@ -53,6 +58,7 @@ export default function Login({getUserToken}){
                 onChange={(event)=>setEmail(event.target.value)}
                 value={email}
                 required/>
+                {console.log(email)}
             <Input 
                 color={color}
                 fontColor={fontColor}

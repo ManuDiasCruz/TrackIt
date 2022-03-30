@@ -10,7 +10,7 @@ import {Container} from '../../layout/Container';
 import {RegisterMsg} from '../../layout/RegisterMsg';
 import { useState } from 'react';
 
-export default function HomePage(){
+export default function LoginPage(){
     const navigate = useNavigate();
     const [token, getToken] = useState();
     return(
