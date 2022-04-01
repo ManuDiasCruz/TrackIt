@@ -5,5 +5,3 @@ export const LogoImage = styled.img`
     height: 178.38px;
     margin: 68px auto 32px;
 `;
-
-export default LogoImage;

@@ -1,4 +1,4 @@
-import LogoImage from './style';
+import {LogoImage} from './style';
 
 import TrackIt from '../../assets/TrackIt.svg';
 

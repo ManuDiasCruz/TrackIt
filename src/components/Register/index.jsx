@@ -19,21 +19,29 @@ export default function Register(){
 
     const navigate = useNavigate();
     
-    function register(){
-        alert('Vamos cadastrar?!');
+    function register(event){
+
+        event.preventDefault();
+
+        disableForm();
+
+        console.log('Vamos cadastrar?!');
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up';
-        const promise = axios.post(URL, {
+        const obj = {
             email,
             name, 
             image: photo,
             password
-        });
+        };
+
+        console.log(obj);
+        const promise = axios.post(URL, obj);
         promise.then(response => {
             const {data} = response;
             console.log(data);
             navigate('/');
         });
-        promise.catch(error => alert(error.response));
+        promise.catch(error => alert(error.response.data));
     }
 
     function disableForm(){
@@ -48,10 +56,10 @@ export default function Register(){
         <Form onSubmit={register}>
             {console.log('Entrei em Register')}
             <Input 
+                placeholder="email" 
                 color={color}
                 fontColor={fontColor}
                 type="text" 
-                placeholder="email" 
                 onChange={(event)=>setEmail(event.target.value)}
                 value={email}
                 required/>
@@ -59,7 +67,7 @@ export default function Register(){
             <Input 
                 color={color}
                 fontColor={fontColor}
-                type="password" 
+                type="text"
                 placeholder="senha" 
                 onChange={(event)=>setPassword(event.target.value)}
                 value={password}
@@ -80,7 +88,7 @@ export default function Register(){
                 onChange={(event)=>setPhoto(event.target.value)}
                 value={photo}
                 required/>
-            <Button color={btColor} onClick={()=>disableForm}>{btMsg}</Button>
+            <Button color={btColor} type={"submit"}>{btMsg}</Button>
         </Form>
     );
 }

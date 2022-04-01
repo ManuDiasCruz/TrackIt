@@ -3,9 +3,10 @@ import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components"; */
 
-export default function InitialPage(){
+
+
+export default function HomePage(){
     return(
-        <><h1>InitialPage</h1>
-        </>
+        <h1>HomePage</h1>
     );
 }

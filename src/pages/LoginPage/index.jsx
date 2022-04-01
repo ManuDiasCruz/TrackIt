@@ -14,7 +14,7 @@ export default function LoginPage(){
     const navigate = useNavigate();
     const [token, getToken] = useState();
     return(
-        <Container>
+        <Container color={"#FFFFFF"}>
             {console.log("Entrei na Loginpage")}
             <Logo />
             <Login getUserToken={user => getToken(user)}/>
