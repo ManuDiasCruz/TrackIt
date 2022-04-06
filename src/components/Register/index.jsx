@@ -7,11 +7,14 @@ import { Input } from '../../layout/Input';
 import { Button } from '../../layout/Button';
 
 export default function Register(){
+    
+    const [user, setUser] = useState(); //Para lembrar de usar uma variável só
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [photo, setPhoto] = useState('');
 
+    const [available, setAvailable] = useState(); //Para lembrar de usar uma variável só
     const [color, setColor] = useState('#FFFFFF');
     const [fontColor, setFontColor] = useState('#DBDBDB');
     const [btColor, setBtColor] = useState('#52B6FF');
@@ -41,15 +44,24 @@ export default function Register(){
             console.log(data);
             navigate('/');
         });
-        promise.catch(error => alert(error.response.data));
+        promise.catch(error => {
+            alert(`Falha no cadastro! ${error.response.data}`)
+            navigate('/cadastro');
+        });
     }
 
     function disableForm(){
-        console.log(name, password, email, photo);
         setColor('#F2F2F2');
-        setFontColor('AFAFAF');
+        setFontColor('#AFAFAF');
         setBtColor('#52B6FF');
         setBtMsg('disabled');
+    }
+
+    function enableForm(){
+        setColor('#FFFFFF');
+        setFontColor('#DBDBDB');
+        setBtColor('#52B6FF');
+        setBtMsg('Cadastrar');
     }
 
     return (

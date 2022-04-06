@@ -21,6 +21,7 @@ export const StyledFooter = styled.footer`
         font-size: 17.976px;
         line-height: 22px;
         text-align: center;
+        text-decoration: none;
         color: #52B6FF;
     }
 

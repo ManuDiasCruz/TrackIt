@@ -1,21 +1,27 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+
+import UserContext from '../../contexts/UserContext';
 
 import { Form } from '../../layout/Form';
 import { Input } from '../../layout/Input';
 import { Button } from '../../layout/Button';
 
-export default function Login({getUserToken}){
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export default function Login(){
+    const [email, setEmail] = useState('email');
+    const [password, setPassword] = useState('senha');
     
+    const [available, setAvailable] = useState(); //Para lembrar de usar uma variável só
     const [color, setColor] = useState('#FFFFFF');
     const [fontColor, setFontColor] = useState('#DBDBDB');
     const [btColor, setBtColor] = useState('#52B6FF');
     const [btMsg, setBtMsg] = useState('Entrar');
     
     const navigate = useNavigate();
+
+    const context = useContext(UserContext);
 
     function login(event){
         event.preventDefault();
@@ -32,24 +38,33 @@ export default function Login({getUserToken}){
         const promise = axios.post(loginURL, obj);
         promise.then( response => {
             const {data} = response;
-            getUserToken(data.token);
+            context.setToken(data.token);
             console.log(data);
-            navigate('/HomePage');
-            alert('Loguei!');
+            navigate('/hoje');
         });
 
         promise.catch(error => {
-            alert(error.response.data);
-            alert('Não Loguei!');
+            alert(`Falha no login! ${error.response.data}`);
+            enableForm();
         });
     }
 
     function disableForm(){
-        alert(email, password);
         setColor('#F2F2F2');
         setFontColor('AFAFAF');
         setBtColor('#52B6FF');
         setBtMsg('disabled');
+    }
+
+    function enableForm(){
+
+        setEmail('');
+        setPassword('');
+        
+        setColor('#FFFFFF');
+        setFontColor('DBDBDB');
+        setBtColor('#52B6FF');
+        setBtMsg('Entrar');
     }
 
     return (

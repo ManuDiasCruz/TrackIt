@@ -8,17 +8,17 @@ import Login from '../../components/Login';
 
 import {Container} from '../../layout/Container';
 import {RegisterMsg} from '../../layout/RegisterMsg';
-import { useState } from 'react';
+
+import { useState, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 
 export default function LoginPage(){
     const navigate = useNavigate();
-    const [token, getToken] = useState();
+
     return(
         <Container color={"#FFFFFF"}>
-            {console.log("Entrei na Loginpage")}
             <Logo />
-            <Login getUserToken={user => getToken(user)}/>
-            {console.log(token)}
+            <Login />
             <RegisterMsg onClick={()=>navigate('/cadastro')}>Não tem uma conta? Cadastre-se!</RegisterMsg>
         </Container>
     );

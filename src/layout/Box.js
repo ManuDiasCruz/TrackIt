@@ -82,7 +82,7 @@ export const MiniBox = styled.div`
     left: 138px;
     top: 218px;
 
-    background: #FFFFFF;
+    background: ${props => props.selected ? "#CFCFCF" : "#FFFFFF"};
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
@@ -94,5 +94,5 @@ export const MiniBox = styled.div`
     line-height: 25px;
     text-align: center;
 
-    color: #DBDBDB;
+    color: ${props => props.selected ? "#FFFFFF" : "#DBDBDB"};
 `;
